@@ -108,6 +108,50 @@ class HomeController {
     require_once __DIR__ . '/../views/admin/ViewProduct/adminProduct.php';
     }
 
+    public function editproduct()
+{
+    $id = $_GET['id'];
+    $productModel = new Product();
+
+$product = $productModel->getById($id);
+$sizes = $productModel->getSizes();
+$colors = $productModel->getColors();
+
+    $product = $productModel->getById($id);
+
+    require_once './views/admin/editproduct.php';
+}
+
+public function updateProduct()
+{
+    $id = $_GET['id'];
+
+    $name = $_POST['name'];
+    $price = $_POST['price'];
+    $color_id = $_POST['color_id'];
+    $size_id = $_POST['size_id'];
+    $stock = $_POST['stock'];
+
+    $model = new Product();
+
+    $product = $model->getById($id);
+
+    // update
+    $model->updateVariant($id, $price, $color_id, $size_id, $stock, $image);
+    $model->updateProductName($product['product_id'], $name);
+
+    $image = $product['image']; // giữ ảnh cũ
+
+if (!empty($_FILES['image']['name'])) {
+    $target = "uploads/" . $_FILES['image']['name'];
+    move_uploaded_file($_FILES['image']['tmp_name'], $target);
+
+    $image = $_FILES['image']['name'];
+}
+
+    header("Location: index.php?act=admin");
+}
+
 
     //người dùng
     public function users() {
