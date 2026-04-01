@@ -40,6 +40,14 @@ switch ($act) {
         (new HomeController())->adminProduct();
         break;
 
+     case 'editproduct':
+    (new HomeController())->editProduct();
+    break;
+
+case 'updateproduct':
+    (new HomeController())->updateProduct();
+    break;
+
     case 'register':
         (new HomeController())->register();
         break;
