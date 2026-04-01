@@ -24,9 +24,13 @@ switch ($act) {
     (new HomeController())->dashboard();
     break;
 
-    case 'detail':
-        (new HomeController())->detail();
-        break;
+     case 'editproduct':
+    (new HomeController())->editProduct();
+    break;
+
+case 'updateproduct':
+    (new HomeController())->updateProduct();
+    break;
 
     default:
         echo "404 - Không tìm thấy trang";
